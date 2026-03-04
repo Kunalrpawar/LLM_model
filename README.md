@@ -4,20 +4,7 @@ A deep-learning text generation project built with TensorFlow/Keras. The model u
 
 ---
 
-## Table of Contents
 
-- [Overview](#overview)
-- [Project Structure](#project-structure)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Dataset](#dataset)
-- [How It Works](#how-it-works)
-- [Training](#training)
-- [Text Generation](#text-generation)
-- [Results & Visualization](#results--visualization)
-- [Saved Artifacts](#saved-artifacts)
-
----
 
 ## Overview
 
@@ -25,23 +12,6 @@ This project implements a **word-level language model** using a two-layer LSTM n
 
 ---
 
-## Project Structure
-
-```
-LLM_model/
-├── main.ipynb            # End-to-end Jupyter notebook (data prep → training → generation)
-├── learn_to_speak.py     # Standalone Python script version
-├── fake_or_real_news.csv # Training dataset (news articles)
-├── diabetes.csv          # Additional dataset (not used in text generation)
-├── joined_text.txt       # Pre-joined corpus text
-├── best_model.keras      # Best model checkpoint saved during training
-├── best_model.h5         # Best model checkpoint (HDF5 format)
-├── text_gen_model.keras  # Final saved model (Keras format)
-├── text_gen_model.h5     # Final saved model (HDF5 format)
-└── history.p             # Pickled training history
-```
-
----
 
 ## Requirements
 
@@ -160,22 +130,3 @@ plot_learning_curve(history)
 The chart shows **training vs. validation loss** and **accuracy** over epochs so you can detect over/under-fitting at a glance.
 
 ---
-
-## Saved Artifacts
-
-| File | Description |
-|------|-------------|
-| `best_model.keras` / `best_model.h5` | Lowest-loss checkpoint saved by `ModelCheckpoint` |
-| `text_gen_model.keras` / `text_gen_model.h5` | Final model after all training epochs |
-| `history.p` | Pickled `history` dict for offline analysis |
-
-To load a saved model and generate text without retraining:
-
-```python
-from tensorflow.keras.models import load_model
-import pickle
-
-model = load_model("best_model.keras")
-with open("history.p", "rb") as f:
-    history = pickle.load(f)
-```
